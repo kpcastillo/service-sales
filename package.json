@@ -2,8 +2,7 @@
   "name": "service-sales",
   "version": "1.0.0",
   "description": "",
-  "source": "src/index.html",
-  "main": "./src/js/main.js",
+  "source": "./src/index.html",
   "scripts": {
     "start": "parcel src/index.html --open",
     "build": "parcel build src/index.html --dist-dir docs"
