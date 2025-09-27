@@ -1,1 +1,1 @@
-# servicesales
+# service-sales A web application designed specifically for contractors, this tool provides effortless and accurate price estimates. It computes prices by considering the square footage and the specific services required, ensuring that late fees are accurately calculated. Additionally, it validates the job address using an API to ensure the accuracy of the provided information.
