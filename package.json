@@ -2,10 +2,11 @@
   "name": "service-sales",
   "version": "1.0.0",
   "description": "",
-  "source": "index.html",
+  "source": "src/index.html",
+  "main": "./src/js/main.js",
   "scripts": {
-    "start": "parcel index.html --open",
-    "build": "parcel build index.html --dist-dir docs"
+    "start": "parcel src/index.html --open",
+    "build": "parcel build src/index.html --dist-dir docs"
   },
   "repository": {
     "type": "git",
