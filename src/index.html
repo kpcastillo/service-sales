@@ -6,41 +6,45 @@
     <title>Service sales</title>
     <link rel="stylesheet" href="./css/styles.css">
     <script src="./js/main.js" type="module"></script>
+    <script src="./js/address.js" type="module"></script>
 </head>
-<header>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">Pavers</a>
-        <a href="services.html">Masonry</a>
-        <a href="contact.html">Contact</a>
-    </nav>
-     <a href="index.html">
-        <img src="/public/images/logo.png" alt="Service Sales Logo" id="logo">
-    </a>
-</header>
-<body>
-    <section id="hero">
-        <div class="Cards">
-            <h2>Our Services</h2>
+<body></body>
+    <header>
+        <nav>
+            <a href="index.html">Home</a>
+            <!--<a href="about.html">Pavers</a>
+            <a href="services.html">Masonry</a>
+            <a href="contact.html">Contact</a>
+        -->
+        </nav>
+        <a href="index.html">
+            <img src="/src/public/images/logo-sales.png" alt="Service Sales Logo" id="logo">
+        </a>
+    </header>
+    <h1>Get a Free Quote Today!</h1>
+    <p>Choose the service below to receive your free, no-obligation quote.</p>
+
+    <section id="quoteSection">
+        <div class="cards">
+            <h2>Masonry Walls</h2>
             <p>Discover our wide range of services tailored to meet your needs.</p>
-            <button id="learnMoreBtn">Learn More</button>
-            <img src="/public/images/service-icon.png" alt="Service Icon" class="icon">
+            <button class="cardButton" id="masonrybtn">Get Quote</button>
+            <img src="./public/images/masonry.jpeg" alt="Service Icon" class="card-img">
         </div>
-        <div class="Cards">
-            <h2>Our Services</h2>
+        <div class="cards">
+            <h2>Pavers and Turf</h2>
             <p>Discover our wide range of services tailored to meet your needs.</p>
-            <button id="learnMoreBtn">Learn More</button>
-            <img src="/public/images/service-icon.png" alt="Service Icon" class="icon">
+            <button class="cardButton" id="paversbtn">Get Quote</button>
+            <img src="./public/images/pavers.jpeg" alt="Service Icon" class="card-img">
         </div>
-        <div class="Cards">
-            <h2>Our Services</h2>
+        <div class="cards">
+            <h2>Concrete Services</h2>
             <p>Discover our wide range of services tailored to meet your needs.</p>
-            <button id="learnMoreBtn">Learn More</button>
-            <img src="/public/images/service-icon.png" alt="Service Icon" class="icon">
+            <button class="cardButton" id="concretebtn">Get Quote</button>
+            <img src="./public/images/concrete.jpeg" alt="Service Icon" class="card-img">
         </div>
     </section>
     <section id="apiSection">
-
         <gmpx-api-loader key="AIzaSyALbB99cOQM6d4WIgh4-Vunctftsal7ZSY" solution-channel="GMP_QB_addressselection_v4_cAB">
         </gmpx-api-loader>
         <gmpx-split-layout row-layout-min-width="600">
@@ -68,12 +72,13 @@
   <div id="content"></div>
   <button id="print">Print Page</button>
   <div>
-    <img src="/public/images/service1.jpg" alt="Service 1" class="service-image">
-    <img src="/public/images/service2.jpg" alt="Service 2" class="service-image">
-    <img src="/public/images/service3.jpg" alt="Service 3" class="service-image">
+    <img src="./public/images/masonry.jpeg" alt="Masonry" class="service-image">
+    <img src="./public/images/pavers.jpeg" alt="Pavers" class="service-image">
+    <img src="./public/images/concrete.jpeg" alt="Concrete" class="service-image">
   </div>
-</body>
+
 <footer>
     <p>&copy; BYU Idaho WDD 330 Final Project.</p>
 </footer>
+</body>
 </html>

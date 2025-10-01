@@ -2,7 +2,7 @@
 
 // This loads helper components from the Extended Component Library,
 // https://github.com/googlemaps/extended-component-library.
-import {APILoader} from 'https://ajax.googleapis.com/ajax/libs/@googlemaps/extended-component-library/0.6.11/index.min.js';
+//import {APILoader} from 'https://ajax.googleapis.com/ajax/libs/@googlemaps/extended-component-library/0.6.11/index.min.js';
 
 const CONFIGURATION = {
   "ctaTitle": "Checkout",
