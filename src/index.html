@@ -7,9 +7,73 @@
     <link rel="stylesheet" href="./css/styles.css">
     <script src="./js/main.js" type="module"></script>
 </head>
+<header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">Pavers</a>
+        <a href="services.html">Masonry</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+     <a href="index.html">
+        <img src="/public/images/logo.png" alt="Service Sales Logo" id="logo">
+    </a>
+</header>
 <body>
-    <h1>Welcome to Service Sales</h1>
-    <p>Your one-stop solution for all service-related needs.</p>
-    <div id="content"></div>
+    <section id="hero">
+        <div class="Cards">
+            <h2>Our Services</h2>
+            <p>Discover our wide range of services tailored to meet your needs.</p>
+            <button id="learnMoreBtn">Learn More</button>
+            <img src="/public/images/service-icon.png" alt="Service Icon" class="icon">
+        </div>
+        <div class="Cards">
+            <h2>Our Services</h2>
+            <p>Discover our wide range of services tailored to meet your needs.</p>
+            <button id="learnMoreBtn">Learn More</button>
+            <img src="/public/images/service-icon.png" alt="Service Icon" class="icon">
+        </div>
+        <div class="Cards">
+            <h2>Our Services</h2>
+            <p>Discover our wide range of services tailored to meet your needs.</p>
+            <button id="learnMoreBtn">Learn More</button>
+            <img src="/public/images/service-icon.png" alt="Service Icon" class="icon">
+        </div>
+    </section>
+    <section id="apiSection">
+
+        <gmpx-api-loader key="AIzaSyALbB99cOQM6d4WIgh4-Vunctftsal7ZSY" solution-channel="GMP_QB_addressselection_v4_cAB">
+        </gmpx-api-loader>
+        <gmpx-split-layout row-layout-min-width="600">
+            <div class="panel" slot="fixed">
+            <div>
+                <img class="sb-title-icon" src="https://fonts.gstatic.com/s/i/googlematerialicons/location_pin/v5/24px.svg" alt="">
+                <span class="sb-title">Address Selection</span>
+            </div>
+            <input type="text" placeholder="Address" id="location-input"/>
+            <input type="text" placeholder="Apt, Suite, etc (optional)"/>
+            <input type="text" placeholder="City" id="locality-input"/>
+            <div class="half-input-container">
+                <input type="text" class="half-input" placeholder="State/Province" id="administrative_area_level_1-input"/>
+                <input type="text" class="half-input" placeholder="Zip/Postal code" id="postal_code-input"/>
+            </div>
+            <input type="text" placeholder="Country" id="country-input"/>
+            </div>
+            <gmp-map slot="main">
+                <gmp-advanced-marker></gmp-advanced-marker>
+            </gmp-map>
+        </gmpx-split-layout>
+    </section>
+  <h1>Welcome to Service Sales</h1>
+  <p>Your one-stop solution for all service-related needs.</p>
+  <div id="content"></div>
+  <button id="print">Print Page</button>
+  <div>
+    <img src="/public/images/service1.jpg" alt="Service 1" class="service-image">
+    <img src="/public/images/service2.jpg" alt="Service 2" class="service-image">
+    <img src="/public/images/service3.jpg" alt="Service 3" class="service-image">
+  </div>
 </body>
+<footer>
+    <p>&copy; BYU Idaho WDD 330 Final Project.</p>
+</footer>
 </html>
