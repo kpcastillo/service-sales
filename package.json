@@ -2,10 +2,12 @@
   "name": "service-sales",
   "version": "1.0.0",
   "description": "",
-  "source": "./src/index.html",
+  "source": "src/js/main.js",
+  "type": "module",
   "scripts": {
-    "start": "parcel src/index.html --open",
-    "build": "parcel build src/index.html --dist-dir docs"
+    "start": "vite src/index.html --open",
+    "build": "vite build src/index.html --out-dir docs",
+    "preview": "vite preview"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,6 @@
   },
   "homepage": "https://github.com/kpcastillo/service-sales#readme",
   "dependencies": {
-    "parcel": "^2.16.0"
+    "vite": "^7.1.8"
   }
 }

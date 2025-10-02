@@ -2,12 +2,12 @@
 
 // This loads helper components from the Extended Component Library,
 // https://github.com/googlemaps/extended-component-library.
-//import {APILoader} from 'https://ajax.googleapis.com/ajax/libs/@googlemaps/extended-component-library/0.6.11/index.min.js';
+import {APILoader} from 'https://ajax.googleapis.com/ajax/libs/@googlemaps/extended-component-library/0.6.11/index.min.js';
 
 const CONFIGURATION = {
   "ctaTitle": "Checkout",
-  "mapOptions": {"center":{"lat":37.4221,"lng":-122.0841},"fullscreenControl":false,"mapTypeControl":false,"streetViewControl":false,"zoom":16,"zoomControl":true,"maxZoom":22,"mapId":""},
-  "mapsApiKey": "AIzaSyALbB99cOQM6d4WIgh4-Vunctftsal7ZSY",
+  "mapOptions": {"center":{"lat":37.4221,"lng":-122.0841},"fullscreenControl":false,"mapTypeControl":false,"streetViewControl":false,"zoom":16,"zoomControl":false,"maxZoom":22,"mapId":""},
+  "mapsApiKey": "YOUR_API_KEY_HERE",
   "capabilities": {"addressAutocompleteControl":true,"mapDisplayControl":true,"ctaControl":false}
 };
 
@@ -61,7 +61,7 @@ function renderAddress(place) {
   }
 }
 
-export async function initMap() {
+async function initMap() {
   const {Autocomplete} = await APILoader.importLibrary('places');
 
   const mapOptions = CONFIGURATION.mapOptions;
