@@ -1,24 +1,25 @@
 {
   "name": "service-sales",
   "version": "1.0.0",
-  "description": "",
-  "source": "src/js/main.js",
-  "type": "module",
+  "description": "WDD330 Final Project",
+  "main": "index.js",
   "scripts": {
-    "start": "vite src/index.html --open",
-    "build": "vite build src/index.html --out-dir docs",
-    "preview": "vite preview"
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kpcastillo/service-sales.git"
+    "url": "git+https://github.com/kpcastillo/servicesales.git"
   },
   "author": "Karen Paz",
+  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kpcastillo/service-sales/issues"
+    "url": "https://github.com/kpcastillo/servicesales/issues"
   },
-  "homepage": "https://github.com/kpcastillo/service-sales#readme",
-  "dependencies": {
+  "homepage": "https://github.com/kpcastillo/servicesales#readme",
+  "devDependencies": {
     "vite": "^7.1.8"
   }
 }

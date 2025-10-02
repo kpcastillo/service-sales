@@ -61,7 +61,7 @@ function renderAddress(place) {
   }
 }
 
-async function initMap() {
+export async function initMap() {
   const {Autocomplete} = await APILoader.importLibrary('places');
 
   const mapOptions = CONFIGURATION.mapOptions;
