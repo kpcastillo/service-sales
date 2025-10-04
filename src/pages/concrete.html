@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>Service Sales</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="../js/concrete.js" type="module"></script>
+  </head>
+  <body>
+    <main class="container">
+      <h1>Service Sales</h1>
+
+      <form id="job-form">
+        <fieldset>
+          <legend>Customer</legend>
+          <label>
+            Full Name
+            <input name="name" required />
+          </label>
+          <label>
+            Phone
+            <input name="phone" type="tel" required />
+          </label>
+          <label>
+            Email
+            <input name="email" type="email" required />
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Service Address</legend>
+          <input id="address" placeholder="Start typing address…" autocomplete="off" />
+          <input type="hidden" id="placeId" />
+          <div id="addressParts" class="muted"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Measurements</legend>
+          <label>
+            Length (ft)
+            <input name="length" type="number" min="0" step="0.01" required />
+          </label>
+          <label>
+            Width (ft)
+            <input name="width" type="number" min="0" step="0.1" required />
+          </label>
+          <label>
+            Notes
+            <textarea name="notes"></textarea>
+          </label>
+        </fieldset>
+
+        <div class="actions">
+          <button type="submit">Save</button>
+          <button type="button" id="print">Print</button>
+        </div>
+      </form>
+
+      <section id="preview" class="print-card"></section>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+    <script
+      id="gmaps"
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=%VITE_GOOGLE_MAPS_API_KEY%&libraries=places&loading=async"
+    ></script>
+  </body>
+</html>

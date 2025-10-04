@@ -12,65 +12,47 @@
     <header>
         <nav>
             <a href="index.html">Home</a>
-            <!--<a href="about.html">Pavers</a>
-            <a href="services.html">Masonry</a>
-            <a href="contact.html">Contact</a>
-        -->
+            <a href="masonry.html">Masonry</a>
+            <a href="pavers.html">Pavers</a>
+            <a href="concrete.html">Concrete</a>
         </nav>
         <a href="index.html">
             <img src="/src/public/images/logo-sales.png" alt="Service Sales Logo" id="logo">
         </a>
     </header>
-    <h1>Get a Free Quote Today!</h1>
+    <h1>Welcome to Service Sales</h1>
+    <p>Your one-stop solution for all service-related needs.</p>
     <p>Choose the service below to receive your free, no-obligation quote.</p>
-
+    <p>Discover our wide range of services tailored to meet your needs.</p>
+    <h2>Get a Free Quote Today!</h2>
     <section id="quoteSection">
         <div class="cards">
             <h2>Masonry Walls</h2>
             <p>Discover our wide range of services tailored to meet your needs.</p>
-            <button class="cardButton" id="masonrybtn">Get Quote</button>
-            <img src="./public/images/masonry.jpeg" alt="Service Icon" class="card-img">
+            <button>Get Quote</button>
+            <img src="/src/public/images/masonry.jpeg" alt="Service Icon" class="card-img">
         </div>
         <div class="cards">
             <h2>Pavers and Turf</h2>
             <p>Discover our wide range of services tailored to meet your needs.</p>
-            <button class="cardButton" id="paversbtn">Get Quote</button>
-            <img src="./public/images/pavers.jpeg" alt="Service Icon" class="card-img">
+            <button>Get Quote</button>
+            <img src="/src/public/images/pavers.jpeg" alt="Service Icon" class="card-img">
         </div>
         <div class="cards">
             <h2>Concrete Services</h2>
             <p>Discover our wide range of services tailored to meet your needs.</p>
-            <button class="cardButton" id="concretebtn">Get Quote</button>
-            <img src="./public/images/concrete.jpeg" alt="Service Icon" class="card-img">
+            <button>Get Quote</button>
+            <img src="/src/public/images/concrete.jpeg" alt="Service Icon" class="card-img">
         </div>
     </section>
-    <section id="apiSection">
-        <gmpx-api-loader key="YOUR_API_KEY_HERE" solution-channel="GMP_QB_addressselection_v4_cAB">
-        </gmpx-api-loader>
-        <gmpx-split-layout row-layout-min-width="600">
-        <div class="panel" slot="fixed">
-            <div>
-            <img class="sb-title-icon" src="https://fonts.gstatic.com/s/i/googlematerialicons/location_pin/v5/24px.svg" alt="">
-            <span class="sb-title">Address Selection</span>
-            </div>
-            <input type="text" placeholder="Address" id="location-input"/>
-            <input type="text" placeholder="Apt, Suite, etc (optional)"/>
-            <input type="text" placeholder="City" id="locality-input"/>
-            <div class="half-input-container">
-            <input type="text" class="half-input" placeholder="State/Province" id="administrative_area_level_1-input"/>
-            <input type="text" class="half-input" placeholder="Zip/Postal code" id="postal_code-input"/>
-            </div>
-            <input type="text" placeholder="Country" id="country-input"/>
-        </div>
-        <gmp-map slot="main">
-            <gmp-advanced-marker></gmp-advanced-marker>
-        </gmp-map>
-        </gmpx-split-layout>
+    <section id="location">
+        <h2>Click the button to get your coordinates.</h2>
+        <button id="getLocation">Get Location</button>
+        <p id="locationDisplay"></p>
     </section>
-  <h1>Welcome to Service Sales</h1>
-  <p>Your one-stop solution for all service-related needs.</p>
   <div id="content"></div>
-  <button id="print">Print Page</button>
+    <h2>Our Services</h2>
+    <p>We offer a variety of services to cater to your needs. Explore our offerings below:</p>
   <div>
     <img src="./public/images/masonry.jpeg" alt="Masonry" class="service-image">
     <img src="./public/images/pavers.jpeg" alt="Pavers" class="service-image">

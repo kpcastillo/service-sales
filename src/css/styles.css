@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playpen+Sans:wght@100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Michroma&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playpen+Sans:wght@100..800&display=swap');
 
 body {
     font-family: 'Open Sans', sans-serif;
-    /*margin: 2rem;*/
+    margin: 0;
     padding: 0;
     background-color: #f3eee1;
     display: block;
@@ -13,40 +14,53 @@ h1 {
     color: #967D74;
     text-align: center;
     margin: 20px 0;
-    font-family: playpen sans, sans-serif;
+    font-family: Michroma, sans-serif;
     font-weight: 700;
 }
 h2 {
   margin: 0;
-  font-family: Playpen Sans, sans-serif;
+  font-family: Michroma, sans-serif;
   font-weight: 600;
+  color: #967D74;
+  text-align: center;
+}
+p {
+    font-size: 1.2em;
+    color: #082136;
+    text-align: center;
+    margin: 10px 0 20px 0;
 }
 
 header {
-    background-color: #082136;
+    background-color: #f3eee1;
     padding: 20px 40px;
     display: flex;
     padding-top: 0.5em;
     justify-content: space-between;
     align-items: center;
-    font-family: Playpen Sans, sans-serif;
+    font-family: Michroma, sans-serif;
+    border-bottom: 1px solid #08445e;
     & :hover {
-      color: white;
-    }   
+      color: #967D74;
+      text-decoration: underline;
+    }
 }
 #logo{
-  width: 50px;
+  width: 65px;
   height: auto;
   justify-items: right;
+  padding-top: 5px;
 }
 
 nav a {
     margin: 0 15px;
     text-decoration: none;
-    color: #dfc4c5;
+    color: #08445e;
+    font-size: 1.2em;
 }
 #quoteSection {
     margin: 20px 0;
+    padding: 20px;
     margin-bottom: 50px;
     display: flex;
     flex-direction: row;
@@ -58,7 +72,7 @@ nav a {
     border-radius: 15px;
     padding: 20px;
     width: 30%;
-    box-shadow: 5px 10px 18px #888888;
+    box-shadow: 5px 10px 18px #d4cfc5;
     transition: transform .5s;
     display: grid;
     justify-content: center;
@@ -66,6 +80,27 @@ nav a {
     justify-items: center;
     &:hover{
         transform: scale(1.05);
+    }
+    & p{
+        font-size: 1em;
+        color: #f3eee1;
+        text-align: center;
+        margin: 10px 0 20px 0;
+    }
+    & button{
+        background-color: #967D74;
+        color: white;
+        border: none;
+        margin-bottom: 5px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 1em;
+        cursor: pointer;
+        &:hover{
+            background-color: #f3eee1;
+            color: #082136;
+            border: 1px solid #082136;
+        }
     }
 }
 .card-img{
@@ -75,47 +110,28 @@ nav a {
     border-radius: 10px;
     display: inline-block;
 }
-.sb-title {
-  position: relative;
-  top: -12px;
-  font-family: Playpen Sans, sans-serif;
-  font-weight: 500;
+#location {
+    margin: 20px 20px;
+    padding: 20px;
+    margin-bottom: 50px;
+    display: block;
+    text-align: center;
+    & button{
+        background-color: #967D74;
+        color: white;
+        margin: 35px 0;
+        border: none;
+        padding: 20px 30px;
+        border-radius: 5px;
+        font-size: 2em;
+        cursor: pointer;
+        &:hover{
+            background-color: #f3eee1;
+            color: #082136;
+            border: 1px solid #082136;
+        }
+    }
 }
-
-.sb-title-icon {
-  position: relative;
-  top: -5px;
-}
-
-gmpx-split-layout {
-  height: 500px;
-  width: 600px;
-}
-
-gmpx-split-layout:not(:defined) {
-  visibility: hidden;
-}
-
-.panel {
-  background: white;
-  box-sizing: border-box;
-  height: 100%;
-  width: 100%;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
-.half-input-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.half-input {
-  max-width: 120px;
-}
-
 input {
   height: 30px;
 }
@@ -139,4 +155,9 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
+}
+@media print {
+  body { background: #fff; }
+  form { display:none; }
+  .print-card { border:none; }
 }
