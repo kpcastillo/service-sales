@@ -1,4 +1,4 @@
-
+// Geolocation functionality
 document.getElementById("getLocation").addEventListener("click", () => {
   const output = document.getElementById("locationDisplay");
   if (!navigator.geolocation) {
@@ -38,14 +38,42 @@ function showError(error) {
       break;
   }
 }
-  // Load header and footer dynamically
-export async function loadHeaderFooter() {
-  const headerTemplate = await loadTemplate("/partials/header.html");
-  const footerTemplate = await loadTemplate("/partials/footer.html");
 
-  const headerElement = document.querySelector("#main-header");
-  const footerElement = document.querySelector("#main-footer");
+// Load template from public folder (served from site root in Vite)
+//export async function loadTemplate(path) {
+  //const res = await fetch(path, { cache: 'no-cache' });
+  //if (!res.ok) throw new Error(`Failed to load ${path}: ${res.status} ${res.statusText}`);
+  //return await res.text();
+//}
 
-  renderWithTemplate(headerTemplate, headerElement);
-  renderWithTemplate(footerTemplate, footerElement);
+// Render one template into a parent
+//export function renderWithTemplate(template, parentElement, data, callback) {
+  //if (!parentElement) return; // avoid null errors if the element is missing
+  //parentElement.innerHTML = template;
+  //if (callback) callback(data);
+//}
+
+// Load header and footer dynamically
+//export async function loadHeaderFooter() {
+  //const [headerTemplate, footerTemplate] = await Promise.all([
+    //loadTemplate('partials/header.html'),
+    //loadTemplate('partials/footer.html'),
+  //]);
+
+  //const headerElement = document.querySelector('#mainHeader');
+  //const footerElement = document.querySelector('#mainFooter');
+
+  //renderWithTemplate(headerTemplate, headerElement);
+  //renderWithTemplate(footerTemplate, footerElement);
+//}
+
+// utils/templates-raw.js
+import headerTemplate from '../partials/header.html?raw';
+import footerTemplate from '../partials/footer.html?raw';
+
+export function loadHeaderFooter() {
+  const headerElement = document.querySelector('#mainHeader');
+  const footerElement = document.querySelector('#mainFooter');
+  if (headerElement) headerElement.innerHTML = headerTemplate;
+  if (footerElement) footerElement.innerHTML = footerTemplate;
 }
