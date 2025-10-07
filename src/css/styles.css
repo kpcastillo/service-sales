@@ -141,7 +141,7 @@ form {
     margin: 0 auto 50px auto;
     box-shadow: 5px 10px 18px #d4cfc5;
     display: grid;
-    gap: 15px;
+    gap: 25px;
     & button{
         background-color: #967D74;
         color: white;
@@ -159,16 +159,46 @@ form {
     }
     & input{
         padding: 10px;
+        margin: 2px;
         border-radius: 5px;
         border: 1px solid #ccc;
         font-size: 1em;
         & input:focus::placeholder {
             color: white;
         }
+        & input:invalid {
+            border-color: red;
+            &::placeholder {
+                color: red;
+            }
+        }
+    }
+    & textarea{
+        padding: 10px;
+        margin: 2px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 1em;
+        resize: vertical;
+    }
+    & fieldset{
+        border: 2px solid #082136;
+        border-radius: 10px;
+        padding: 10px;
+        & legend{
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #082136;
+            padding: 0 10px;
+        }
+        & label{
+            display: block;
+            margin: 10px 0;
+        }
     }
 }
 label {
-  font-size: 16px;
+  font-size: 18px;
   color: #082136;
   font-family: Roboto, sans-serif;
   font-style: normal;

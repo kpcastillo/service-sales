@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <title>Service Sales</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/pavers.js" type="module"></script>
   </head>
   <body>
     <header id="mainHeader"></header>
@@ -39,13 +40,11 @@
           <legend>Measurements</legend>
           <label>
             Length (ft)
-            <input name="length" type="number" min="0" step="0.01" required />
+            <input name="length" type="number" min="0" step="0.5" required />
           </label>
           <label>
             width (ft)
-            <input name="width" type="number" min="0" step="0.1" required />
-          </label>
-            <input name="height" type="number" min="0" step="0.1" required />
+            <input name="width" type="number" min="0" step="0.5" required />
           </label>
           <label>
             Notes

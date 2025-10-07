@@ -30,7 +30,7 @@
 
         <fieldset>
           <legend>Service Address</legend>
-          <input id="address" placeholder="Start typing address…" autocomplete="off" />
+          <input id="address" placeholder="Start typing address…" autocomplete="on" />
           <input type="hidden" id="placeId" />
           <div id="addressParts" class="muted"></div>
         </fieldset>
@@ -38,12 +38,12 @@
         <fieldset>
           <legend>Measurements</legend>
           <label>
-            Linear Feet
-            <input name="linearFeet" type="number" min="0" step="0.01" required />
+            Linear Ft
+            <input name="linearFeet" type="number" min="0" step="0.5" required />
           </label>
           <label>
             Height (ft)
-            <input name="height" type="number" min="0" step="0.1" required />
+            <input name="height" type="number" min="0" step="0.5" required />
           </label>
           <label>
             Notes
