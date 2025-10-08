@@ -1,12 +1,18 @@
 
-import { showPosition, loadHeaderFooter, showSlides, plusSlides, currentSlide } from './utils.js';  
+import { showPosition, loadHeaderFooter, showSlides, plusSlides, currentSlide } from './utils.js';
+import {loadGoogleMaps, initAutocomplete} from './address.js';
+
+// Load Google Maps API and initialize autocomplete
 const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+loadGoogleMaps(apiKey).then(() => {
+  const addressInput = document.getElementById('address');
+  initAutocomplete(addressInput, (place) => {
+    console.log('Selected place:', place);
+  });
+});
 
+// Show user position
 showPosition();
-const helloNode = document.createElement("h1");
-
-document.getElementById('content').appendChild(helloNode);
-helloNode.textContent = "Hello from JavaScript!";
 
 //Header and footer loading
  window.addEventListener('DOMContentLoaded', () => loadHeaderFooter());
@@ -14,12 +20,6 @@ helloNode.textContent = "Hello from JavaScript!";
  //slideshow controls
 let slideIndex = 1;
 showSlides(slideIndex);
- document.querySelector('.prev').addEventListener('click', () => plusSlides(-1));
- document.querySelector('.next').addEventListener('click', () => plusSlides(1));
- const dots = document.getElementsByClassName('dot');
- for (let i = 0; i < dots.length; i++) {
-   dots[i].addEventListener('click', () => currentSlide(i + 1));
- }
 
 // Load an HTML template from a file
 //async function loadTemplate(url) {

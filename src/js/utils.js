@@ -1,13 +1,73 @@
-// Geolocation functionality
-document.getElementById("getLocation").addEventListener("click", () => {
-  const output = document.getElementById("locationDisplay");
-  if (!navigator.geolocation) {
-    output.innerText = "Geolocation is not supported by this browser.";
+import { loadGoogleMaps, initAutocomplete } from './address.js';
+
+// Load Google Maps API and initialize autocomplete
+
+const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+
+const form = document.getElementById('job-form');
+const addressInput = document.getElementById('address');
+const placeIdInput = document.getElementById('placeId');
+const partsDiv = document.getElementById('addressParts');
+const preview = document.getElementById('preview');
+const printBtn = document.getElementById('print');
+
+let selectedPlace = null;
+
+(async function boot() {
+  const google = await loadGoogleMaps(apiKey);
+  initAutocomplete(addressInput, (place) => {
+    selectedPlace = place;
+    placeIdInput.value = place.place_id || '';
+    partsDiv.textContent = place.formatted_address || '(No formatted address)';
+  });
+})();
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  // Basic validations
+  if (!selectedPlace?.place_id) {
+    alert('Please select a valid address from the dropdown.');
     return;
   }
-  output.innerText = "Getting your location...";
 
-  navigator.geolocation.getCurrentPosition(showPosition, showError);
+  const data = Object.fromEntries(new FormData(form));
+  const payload = {
+    customer: {
+      name: data.name,
+      phone: data.phone,
+      email: data.email
+    },
+    address: {
+      placeId: selectedPlace.place_id,
+      formatted: selectedPlace.formatted_address,
+      components: selectedPlace.address_components || [],
+      location: selectedPlace.geometry?.location
+        ? { lat: selectedPlace.geometry.location.lat(), lng: selectedPlace.geometry.location.lng() }
+        : null
+    },
+    job: {
+      linearFeet: parseFloat(data.linearFeet),
+      height: parseFloat(data.height),
+      notes: data.notes || ''
+    },
+    createdAt: new Date().toISOString()
+  };
+
+  // Save locally
+  saveLocal(payload);
+
+  // Geolocation functionality
+  document.getElementById("getLocation").addEventListener("click", () => {
+    const output = document.getElementById("locationDisplay");
+    if (!navigator.geolocation) {
+      output.innerText = "Geolocation is not supported by this browser.";
+      return;
+    }
+    output.innerText = "Getting your location...";
+
+    navigator.geolocation.getCurrentPosition(showPosition, showError);
+  });
 });
 
 export function showPosition(position) {
@@ -67,7 +127,7 @@ function showError(error) {
   //renderWithTemplate(footerTemplate, footerElement);
 //}
 
-// utils/templates-raw.js
+// importing partials as raw strings
 import headerTemplate from '../partials/header.html?raw';
 import footerTemplate from '../partials/footer.html?raw';
 
@@ -106,5 +166,5 @@ export function showSlides(n) {
     dots[i].className = dots[i].className.replace(" active", "");
   }
   slides[slideIndex-1].style.display = 'block';  
-  dots[slideIndex-1].className += 'active';
+  dots[slideIndex-1].className += ' active';
 }
