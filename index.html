@@ -6,7 +6,6 @@
     <title>Service sales</title>
     <link rel="stylesheet" href="/src/css/styles.css">
     <script src="/src/js/index.js" type="module"></script>
-    <script src="/src/js/address.js" type="module"></script>
 </head>
 <body></body>
     <!-- Header -->
@@ -20,19 +19,19 @@
     <section id="quoteSection">
         <div class="cards">
             <h2>Masonry Walls</h2>
-            <p>Discover our wide range of services tailored to meet your needs.</p>
+            <p>A combination of bricks, stones, and mortar for a durable and attractive wall solution.</p>
             <button id="masonrybtn" onclick="location.href='/src/pages/masonry.html'">Get Quote</button>
             <img src="/src/public/images/masonry.jpeg" alt="Service Icon" class="card-img">
         </div>
         <div class="cards">
             <h2>Pavers and Turf</h2>
-            <p>Discover our wide range of services tailored to meet your needs.</p>
+            <p>A combination of pavers and artificial turf for a no mowing no watering hardscape solution.</p>
             <button id="paversbtn" onclick="location.href='/src/pages/pavers.html'">Get Quote</button>
             <img src="/src/public/images/pavers.jpeg" alt="Service Icon" class="card-img">
         </div>
         <div class="cards">
             <h2>Concrete Services</h2>
-            <p>Discover our wide range of services tailored to meet your needs.</p>
+            <p>A combination of cement, sand, and gravel for a strong and durable surface.</p>
             <button id="concretebtn" onclick="location.href='/src/pages/concrete.html'">Get Quote</button>
             <img src="/src/public/images/concrete.jpeg" alt="Service Icon" class="card-img">
         </div>
@@ -45,25 +44,50 @@
   <div id="content"></div>
     <h2>Our Services</h2>
     <p>We offer a variety of services to cater to your needs. Explore our offerings below:</p>
-    <ul>
-        <li>
-            <img src="/images/masonry.jpeg" alt="Masonry" class="service-image">
-            <p>Masonry</p>
-        </li>
-        <li>
-            <img src="/images/pavers.jpeg" alt="Pavers" class="service-image">
-            <p>Pavers</p>
-        </li>
-        <li>
-            <img src="/images/concrete.jpeg" alt="Concrete" class="service-image">
-            <p>Concrete</p>
-        </li>
-    </ul>
-    <div>
-    <img src="/images/masonry.jpeg" alt="Masonry" class="service-image">
-    <img src="/images/pavers.jpeg" alt="Pavers" class="service-image">
-    <img src="/images/concrete.jpeg" alt="Concrete" class="service-image">
-  </div>
+     <div class="slideshow-container">
+
+            <div class="mySlides fade">
+                <div class="numbertext">1 / 5</div>
+                <img src="/src/public/images/masonry2.png" style="width:100%" alt="Masonry wall">
+                <div class="text">Masonry Walls</div>
+            </div>
+
+            <div class="mySlides fade">
+                <div class="numbertext">2 / 5</div>
+                <img src="/src/public/images/pavers2.png" style="width:100%" alt="Pavers and Turf">
+                <div class="text">Pavers and Turf</div>
+            </div>
+
+            <div class="mySlides fade">
+                <div class="numbertext">3 / 5</div>
+                <img src="/src/public/images/concrete2.png" style="width:100%" alt="Tree">
+                <div class="text">Concrete</div>
+            </div>
+            <div class="mySlides fade">
+                <div class="numbertext">4 / 5</div>
+                <img src="/src/public/images/stucco.png" style="width:100%" alt="Stucco">
+                <div class="text">Stucco</div>
+            </div>
+
+            <div class="mySlides fade">
+                <div class="numbertext">5 / 5</div>
+                <img src="/src/public/images/repairs.png" style="width:100%" alt="Repairs">
+                <div class="text">Repairs</div>
+            </div>
+            
+            <a class="prev" onclick="plusSlides(-1)">❮</a>
+            <a class="next" onclick="plusSlides(1)">❯</a>
+            </div>
+            <br>
+            
+            <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span> 
+            <span class="dot" onclick="currentSlide(2)"></span> 
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+            </div>
+        </div>
     <!-- Footer -->
     <footer id="mainFooter"></footer>
 

@@ -72,8 +72,35 @@ import headerTemplate from '../partials/header.html?raw';
 import footerTemplate from '../partials/footer.html?raw';
 
 export function loadHeaderFooter() {
-  const headerElement = document.querySelector('#mainHeader');
-  const footerElement = document.querySelector('#mainFooter');
+  const headerElement = document.getElementById('mainHeader');
+  const footerElement = document.getElementById('mainFooter');
   if (headerElement) headerElement.innerHTML = headerTemplate;
   if (footerElement) footerElement.innerHTML = footerTemplate;
+}
+//Slideshow
+let slideIndex = 1;
+showSlides(slideIndex);
+
+export function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+export function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+export function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = 'block';  
+  dots[slideIndex-1].className += 'active';
 }
