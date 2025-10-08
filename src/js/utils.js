@@ -74,8 +74,12 @@ import footerTemplate from '../partials/footer.html?raw';
 export function loadHeaderFooter() {
   const headerElement = document.getElementById('mainHeader');
   const footerElement = document.getElementById('mainFooter');
+  try {
   if (headerElement) headerElement.innerHTML = headerTemplate;
   if (footerElement) footerElement.innerHTML = footerTemplate;
+  } catch (error) {
+    console.error('Error loading header or footer:', error);
+  }
 }
 //Slideshow
 let slideIndex = 1;
