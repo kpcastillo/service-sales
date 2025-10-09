@@ -1,61 +1,4 @@
-import { loadGoogleMaps, initAutocomplete } from './address.js';
-
-// Load Google Maps API and initialize autocomplete
-
-const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-
-const form = document.getElementById('job-form');
-const addressInput = document.getElementById('address');
-const placeIdInput = document.getElementById('placeId');
-const partsDiv = document.getElementById('addressParts');
-const preview = document.getElementById('preview');
-const printBtn = document.getElementById('print');
-
-let selectedPlace = null;
-
-(async function boot() {
-  const google = await loadGoogleMaps(apiKey);
-  initAutocomplete(addressInput, (place) => {
-    selectedPlace = place;
-    placeIdInput.value = place.place_id || '';
-    partsDiv.textContent = place.formatted_address || '(No formatted address)';
-  });
-})();
-
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-
-  // Basic validations
-  if (!selectedPlace?.place_id) {
-    alert('Please select a valid address from the dropdown.');
-    return;
-  }
-
-  const data = Object.fromEntries(new FormData(form));
-  const payload = {
-    customer: {
-      name: data.name,
-      phone: data.phone,
-      email: data.email
-    },
-    address: {
-      placeId: selectedPlace.place_id,
-      formatted: selectedPlace.formatted_address,
-      components: selectedPlace.address_components || [],
-      location: selectedPlace.geometry?.location
-        ? { lat: selectedPlace.geometry.location.lat(), lng: selectedPlace.geometry.location.lng() }
-        : null
-    },
-    job: {
-      linearFeet: parseFloat(data.linearFeet),
-      height: parseFloat(data.height),
-      notes: data.notes || ''
-    },
-    createdAt: new Date().toISOString()
-  };
-
-  // Save locally
-  saveLocal(payload);
+// Utility functions for form handling, local storage, and templates
 
   // Geolocation functionality
   document.getElementById("getLocation").addEventListener("click", () => {
@@ -68,7 +11,7 @@ form.addEventListener('submit', async (e) => {
 
     navigator.geolocation.getCurrentPosition(showPosition, showError);
   });
-});
+;
 
 export function showPosition(position) {
   const lat = position.coords.latitude.toFixed(6);

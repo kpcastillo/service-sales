@@ -1,18 +1,23 @@
 import {loadHeaderFooter} from './utils.js';
-import {loadGoogleMaps, initAutocomplete,renderPreview, saveLocal} from './address.js';
+import {loadGoogleMaps, createAutocomplete,} from './address.js';
 
 // Load Google Maps API and initialize autocomplete
-const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-loadGoogleMaps(apiKey).then(() => {
-  const addressInput = document.getElementById('address');
-  initAutocomplete(addressInput, (place) => {
-    console.log('Selected place:', place);
+
+const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+const addressInput = document.getElementById('address');
+const placeIdInput = document.getElementById('placeId');
+const addressDisplay = document.getElementById('addressParts');
+
+let selectedPlace = null;
+
+window.addEventListener('DOMContentLoaded', async () => {
+  const google = await loadGoogleMaps(API_KEY);
+  createAutocomplete(addressInput, (place) => {
+    selectedPlace = place;
+    placeIdInput.value = place.place_id || '';
+    addressDisplay.textContent = place.formatted_address || '';
   });
 });
-renderPreview(payload);
 
-alert('Saved!');
-
-printBtn.addEventListener('click', () => window.print());
 
 loadHeaderFooter();

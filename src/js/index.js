@@ -5,7 +5,7 @@ import { showPosition, loadHeaderFooter, showSlides } from './utils.js';
 showPosition();
 
 //Header and footer loading
- window.addEventListener('DOMContentLoaded', () => loadHeaderFooter());
+ window.addEventListener('DOMContentLoaded', () => loadHeaderFooter().catch(console.error));
 
  //slideshow controls
 let slideIndex = 1;
