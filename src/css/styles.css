@@ -147,16 +147,15 @@ nav a {
 .mySlides {
   opacity: 0;
   transition: opacity 1.5s ease-in-out;
-  & .active {
-    opacity: 1;
-  }
-  & img {
+}
+.mySlides img {
     vertical-align: middle;
     width: 100%;
     border-radius: 10px;
     object-fit: cover;
-  }
-  
+}
+.mySlides.active {
+  opacity: 1;
 }
 .slideshowContainer {
   max-width: 1000px;

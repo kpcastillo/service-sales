@@ -9,7 +9,7 @@ window.addEventListener('DOMContentLoaded', () => loadHeaderFooter().catch(conso
 
 //slideshow controls
 document.addEventListener('DOMContentLoaded', () => {
-  const slides = document.querySelectorAll('.mySlides');   // ← match HTML
+  const slides = document.querySelectorAll('.mySlides');
   const dots   = document.querySelectorAll('.dot');
   const prevButton = document.querySelector('.prev');
   const nextButton = document.querySelector('.next');
@@ -52,8 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
       startSlideShow();
     });
   });
-
-  // Initialize AFTER everything is wired
+  //slideshow initialization
+  //Initialize AFTER everything is wired
   showSlides(currentIndex, slides, dots);
   startSlideShow();
 });
