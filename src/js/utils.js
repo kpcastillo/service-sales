@@ -89,7 +89,7 @@ export function showSlides(index, slides, dots) {
   slides.forEach(s => s.classList.remove('active'));
   dots.forEach(d => d.classList.remove('active'));
 
-  // Optional chaining prevents hard crashes if lengths mismatch
+  // Optional chaining  prevents hard crashes if lengths mismatch
   slides[index]?.classList.add('active');
   dots[index]?.classList.add('active');
 }
