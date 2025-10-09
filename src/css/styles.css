@@ -179,9 +179,9 @@ nav a {
   z-index: 1;
   border-radius: 0 3px 3px 0;
   user-select: none;
-  & :hover {
-    background-color: #08445e;
-  }
+}
+.prev:hover, .next:hover {
+  background-color: #967D74;
 }
 .prev {
   left: 0;
