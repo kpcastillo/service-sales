@@ -1,5 +1,5 @@
 
-import { showPosition, loadHeaderFooter, showSlides } from './utils.js';
+import { showPosition, loadHeaderFooter, showSlides, getNextIndex, getPrevIndex } from './utils.js';
 
 // Show user position
 showPosition();
