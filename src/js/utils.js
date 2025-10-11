@@ -41,49 +41,39 @@ function showError(error) {
       break;
   }
 }
-
-// Load template from public folder (served from site root in Vite)
-//export async function loadTemplate(path) {
-  //const res = await fetch(path, { cache: 'no-cache' });
-  //if (!res.ok) throw new Error(`Failed to load ${path}: ${res.status} ${res.statusText}`);
-  //return await res.text();
-//}
-
-// Render one template into a parent
-//export function renderWithTemplate(template, parentElement, data, callback) {
-  //if (!parentElement) return; // avoid null errors if the element is missing
-  //parentElement.innerHTML = template;
-  //if (callback) callback(data);
-//}
-
-// Load header and footer dynamically
-//export async function loadHeaderFooter() {
-  //const [headerTemplate, footerTemplate] = await Promise.all([
-    //loadTemplate('partials/header.html'),
-    //loadTemplate('partials/footer.html'),
-  //]);
-
-  //const headerElement = document.querySelector('#mainHeader');
-  //const footerElement = document.querySelector('#mainFooter');
-
-  //renderWithTemplate(headerTemplate, headerElement);
-  //renderWithTemplate(footerTemplate, footerElement);
-//}
-
-// importing partials as raw strings
-import headerTemplate from '../partials/header.html?raw';
-import footerTemplate from '../partials/footer.html?raw';
-
-export function loadHeaderFooter() {
-  const headerElement = document.getElementById('mainHeader');
-  const footerElement = document.getElementById('mainFooter');
-  try {
-  if (headerElement) headerElement.innerHTML = headerTemplate;
-  if (footerElement) footerElement.innerHTML = footerTemplate;
-  } catch (error) {
-    console.error('Error loading header or footer:', error);
-  }
+//Render one template into a parent
+export function renderWithTemplate(template, parentElement, data, callback) {
+  if (!parentElement) return('No parent Element'); // avoid null errors if the element is missing
+  parentElement.innerHTML = template;
+  if (callback) callback(data);
 }
+//Load an HTML template from a file
+export async function loadTemplate(path) {
+  const res = await fetch(path);
+  const template = await res.text();
+  return template;
+}
+
+//Load header and footer dynamically
+export async function loadHeaderFooter() {
+  const headerTemplate = await loadTemplate('/partials/header.html');
+  const footerTemplate = await loadTemplate('/partials/footer.html');
+
+  const headerElement = document.querySelector('#mainHeader');
+  const footerElement = document.querySelector('#mainFooter');
+
+  renderWithTemplate(headerTemplate, headerElement);
+  renderWithTemplate(footerTemplate, footerElement);
+
+  if (!headerElement || !footerElement) {
+    console.error('Header or footer element not found in the DOM.');
+  }
+  headerElement.innerHTML = headerTemplate;
+  footerElement.innerHTML = footerTemplate;
+
+  document.dispatchEvent(new Event('headerFooterLoaded'));
+};
+
 //Slideshow
 export function showSlides(index, slides, dots) {
   slides.forEach(s => s.classList.remove('active'));

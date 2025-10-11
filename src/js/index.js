@@ -1,16 +1,26 @@
 
-import { showPosition, loadHeaderFooter, showSlides, getNextIndex, getPrevIndex } from './utils.js';
+import { showPosition, loadHeaderFooter, showSlides, getNextIndex, getPrevIndex } from "./utils.js";
 
 // Show user position
 showPosition();
 
 //Header and footer loading
-window.addEventListener('DOMContentLoaded', () => loadHeaderFooter().catch(console.error()));
+window.addEventListener('DOMContentLoaded', async() => {
+  try {
+    await loadHeaderFooter().catch(console.error()); // ensure header/footer load first
+  } catch (error) {
+    console.warn('Error loading header or footer:', error);
+  }
+});
+
+
 
 //slideshow controls
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded',() => {
+  
+  //slideshow setup
   const slides = document.querySelectorAll('.mySlides');
-  const dots   = document.querySelectorAll('.dot');
+  const dots = document.querySelectorAll('.dot');
   const prevButton = document.querySelector('.prev');
   const nextButton = document.querySelector('.next');
 
@@ -58,12 +68,4 @@ document.addEventListener('DOMContentLoaded', () => {
   startSlideShow();
 });
 
-// Load an HTML template from a file
-//async function loadTemplate(url) {
-  //const response = await fetch(url);
-  //if (!response.ok) {
-    //console.error(`Failed to load template from ${url}: ${response.statusText}`);
-    //return '';
-  //}
-  //return await response.text();
 
