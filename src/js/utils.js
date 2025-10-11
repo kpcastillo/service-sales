@@ -46,6 +46,7 @@ export function renderWithTemplate(template, parentElement, data, callback) {
   if (!parentElement) return('No parent Element'); // avoid null errors if the element is missing
   parentElement.innerHTML = template;
   if (callback) callback(data);
+  console.log(data);
 }
 //Load an HTML template from a file
 export async function loadTemplate(path) {

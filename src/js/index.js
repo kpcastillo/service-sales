@@ -5,15 +5,18 @@ import { showPosition, loadHeaderFooter, showSlides, getNextIndex, getPrevIndex 
 showPosition();
 
 //Header and footer loading
-window.addEventListener('DOMContentLoaded', async() => {
-  try {
-    await loadHeaderFooter().catch(console.error()); // ensure header/footer load first
-  } catch (error) {
-    console.warn('Error loading header or footer:', error);
-  }
+//document.addEventListener('DOMContentLoaded', async() => {
+  //try {
+    //await loadHeaderFooter().catch(console.error()); // ensure header/footer load first
+  //} catch (error) {
+    //console.warn('Error loading header or footer:', error);
+  //}
+//});
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadHeaderFooter();                 // injects header/footer
+  document.dispatchEvent(new Event('partials:loaded'));
+  console.log('Header and footer loaded');
 });
-
-
 
 //slideshow controls
 document.addEventListener('DOMContentLoaded',() => {
