@@ -1,8 +1,8 @@
 // Utility functions for form handling, local storage, and templates
 
   // Geolocation functionality
-  document.getElementById("getLocation").addEventListener("click", () => {
-    const output = document.getElementById("locationDisplay");
+  document.getElementById("getLocation").addEventListener("click", async () => {
+    const output = await document.getElementById("locationDisplay");
     if (!navigator.geolocation) {
       output.innerText = "Geolocation is not supported by this browser.";
       return;
@@ -14,6 +14,10 @@
 ;
 
 export function showPosition(position) {
+  if (!position || !position.coords) {
+    document.getElementById("locationDisplay").innerText = "Unable to retrieve location.";
+    return;
+  }
   const lat = position.coords.latitude.toFixed(6);
   const lng = position.coords.longitude.toFixed(6);
 
