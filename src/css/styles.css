@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playpen+Sans:wght@100..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Michroma&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playpen+Sans:wght@100..800&display=swap');
-
+/* General styles */
 body {
     font-family: 'Open Sans', sans-serif;
     margin: 0;
@@ -30,7 +30,7 @@ p {
     text-align: center;
     margin: 10px 0 20px 0;
 }
-
+/* Header styles */
 header {
     background-color: #f3eee1;
     padding: 20px 40px;
@@ -49,6 +49,8 @@ header {
   width: 65px;
   height: auto;
   justify-items: right;
+  justify-content: right;
+  justify-self: right;
   padding-top: 5px;
 }
 
@@ -58,6 +60,7 @@ nav a {
     color: #08445e;
     font-size: 1.2em;
 }
+/* Main content styles */
 #quoteSection {
     margin: 20px 0;
     padding: 20px;
@@ -144,6 +147,7 @@ nav a {
         box-shadow: 0 0 0 0 rgba(150, 125, 116, 0);
     }
 }
+/* Slideshow styles */
 .mySlides {
   position: absolute;
   opacity: 0;
@@ -236,18 +240,10 @@ nav a {
 .dot.active {
   background-color: #967D74;
 }
-/*.fade {
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
-@keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
-}*/
 @media only screen and (max-width: 300px) {
   .prev, .next,.text {font-size: 11px}
 }
-
+/* Form styles */
 form {
     background-color: #f3eee1;
     border: 5px solid #082136;
@@ -330,8 +326,22 @@ footer {
     bottom: 0;
     width: 100%;
 }
+/* Print styles */
 @media print {
   body { background: #fff; }
   form { display:none; }
   .print-card { border:none; }
+}
+
+@media screen and (max-width: 32rem) {
+  #quoteSection {
+    flex-direction: column;
+    margin: 10px, 10px;
+    padding: 10px;
+  }
+  .cards {
+    width: 85%;
+    margin-bottom: 20px;
+    margin: 10px 10px;
+  }
 }
