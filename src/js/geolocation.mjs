@@ -20,7 +20,7 @@ export function showPosition(position) {
 
   document.getElementById("locationDisplay").innerText = `Latitude: ${lat}, Longitude: ${lng}`;
 
-  // Optional: store them for later use
+  // Store them for later use
   //localStorage.setItem("userLat", lat);
   //localStorage.setItem("userLng", lng);
 }

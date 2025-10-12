@@ -6,20 +6,20 @@ import { showPosition } from "./geolocation.mjs";
 showPosition();
 
 //Header and footer loading
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener("DOMContentLoaded", async () => {
   await loadHeaderFooter();                 // injects header/footer
-  document.dispatchEvent(new Event('partials:loaded'));
-  console.log('Header and footer loaded');
+  document.dispatchEvent(new Event("partials:loaded"));
+  console.log("Header and footer loaded");
 });
 
 //slideshow controls
-document.addEventListener('DOMContentLoaded',() => {
-  
+document.addEventListener("DOMContentLoaded", () => {
+
   //slideshow setup
-  const slides = document.querySelectorAll('.mySlides');
-  const dots = document.querySelectorAll('.dot');
-  const prevButton = document.querySelector('.prev');
-  const nextButton = document.querySelector('.next');
+  const slides = document.querySelectorAll(".mySlides");
+  const dots = document.querySelectorAll(".dot");
+  const prevButton = document.querySelector(".prev");
+  const nextButton = document.querySelector(".next");
 
   const totalSlides = slides.length;
   let currentIndex = 0;
@@ -36,14 +36,14 @@ document.addEventListener('DOMContentLoaded',() => {
     clearInterval(slideInterval);
   }
 
-  prevButton.addEventListener('click', () => {
+  prevButton.addEventListener("click", () => {
     stopSlideShow();
     currentIndex = getPrevIndex(currentIndex, totalSlides);
     showSlides(currentIndex, slides, dots);
     startSlideShow();
   });
 
-  nextButton.addEventListener('click', () => {
+  nextButton.addEventListener("click", () => {
     stopSlideShow();
     currentIndex = getNextIndex(currentIndex, totalSlides);
     showSlides(currentIndex, slides, dots);
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded',() => {
   });
 
   dots.forEach(dot => {
-    dot.addEventListener('click', (e) => {
+    dot.addEventListener("click", (e) => {
       stopSlideShow();
       const slideIndex = parseInt(e.target.dataset.slideTo, 10);
       currentIndex = slideIndex;
