@@ -1,5 +1,5 @@
 import {loadHeaderFooter} from './utils.js';
-import {loadGoogleMaps, initAutocomplete,renderPreview, saveLocal} from './address.js';
+import {loadGoogleMaps} from './address.js';
 
 // Load Google Maps API and initialize autocomplete
 const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
@@ -9,10 +9,14 @@ loadGoogleMaps(apiKey).then(() => {
     console.log('Selected place:', place);
   });
 });
-renderPreview(payload);
+//renderPreview(payload);
+//alert('Saved!');
 
-alert('Saved!');
+//printBtn.addEventListener('click', () => window.print());
 
-printBtn.addEventListener('click', () => window.print());
-
-loadHeaderFooter();
+//Header and footer loading
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadHeaderFooter();                 // injects header/footer
+  document.dispatchEvent(new Event('partials:loaded'));
+  console.log('Header and footer loaded');
+});

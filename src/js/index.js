@@ -1,17 +1,11 @@
 
-import { showPosition, loadHeaderFooter, showSlides, getNextIndex, getPrevIndex } from "./utils.js";
+import { loadHeaderFooter, showSlides, getNextIndex, getPrevIndex } from "./utils.js";
+import { showPosition } from "./geolocation.mjs";
 
 // Show user position
 showPosition();
 
 //Header and footer loading
-//document.addEventListener('DOMContentLoaded', async() => {
-  //try {
-    //await loadHeaderFooter().catch(console.error()); // ensure header/footer load first
-  //} catch (error) {
-    //console.warn('Error loading header or footer:', error);
-  //}
-//});
 document.addEventListener('DOMContentLoaded', async () => {
   await loadHeaderFooter();                 // injects header/footer
   document.dispatchEvent(new Event('partials:loaded'));
@@ -66,7 +60,7 @@ document.addEventListener('DOMContentLoaded',() => {
     });
   });
   //slideshow initialization
-  //Initialize AFTER everything is wired
+  //Initialize AFTER partials are loaded
   showSlides(currentIndex, slides, dots);
   startSlideShow();
 });
