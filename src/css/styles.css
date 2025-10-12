@@ -52,6 +52,15 @@ header {
   justify-content: right;
   justify-self: right;
   padding-top: 5px;
+  animation-duration: 7s;
+  animation-name: logo-grow;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+@keyframes logo-grow {
+  0%   {transform: scale(1);}
+  50%  {transform: scale(1.1);}
+  100% {transform: scale(1);}
 }
 
 nav a {
