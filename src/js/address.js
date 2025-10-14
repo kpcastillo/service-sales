@@ -27,7 +27,7 @@ await customElements.whenDefined('gmpx-place-picker');
       placeAddressSpan.textContent = "";
     }
   });
-}
+
 
 
 // Initialize the autocomplete form once the DOM is fully loaded
