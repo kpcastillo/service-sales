@@ -40,7 +40,7 @@ emailInput.addEventListener("blur", async () => {
     return;
   }
   try {
-    const data = await validateEmail(emailInput.value.trim());
+    const data = await validateEmail();
     if (data.format_valid) {
       emailFeedback.textContent = "Valid email address.";
       emailFeedback.style.color = "green";

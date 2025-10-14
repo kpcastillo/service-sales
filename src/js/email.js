@@ -1,10 +1,12 @@
 //Email validation API module
 const emailKey = import.meta.env.VITE_MAILBOX_API_KEY;
 const emailAddressInput = document.getElementById('email-input');
-const emailApiUrl = 'http://apilayer.net/api/check?access_key=' + emailKey + '&email=' + emailAddressInput.value;
+const emailApiUrl = `https://apilayer.net/api/check?access_key=${emailKey}&email=${encodeURIComponent(emailAddressInput.value)}`;
+//const res = await fetch(url);
 
 // Function to validate email address using MailboxLayer API
 export async function validateEmail() {
+
   const response = await fetch(emailApiUrl);
   if (!response.ok) {
     throw new Error('Network response was not ok ' + response.statusText);
