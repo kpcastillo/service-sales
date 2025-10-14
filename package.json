@@ -20,6 +20,10 @@
   },
   "homepage": "https://github.com/kpcastillo/servicesales#readme",
   "devDependencies": {
+    "@types/google.maps": "^3.58.1",
     "vite": "^7.1.8"
+  },
+  "dependencies": {
+    "@googlemaps/js-api-loader": "^2.0.1"
   }
 }

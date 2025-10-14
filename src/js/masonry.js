@@ -1,22 +1,30 @@
 import {loadHeaderFooter} from './utils.js';
-import {loadGoogleMaps} from './address.js';
+import {calculateMasonry} from './calculations.js';
 
-// Load Google Maps API and initialize autocomplete
-const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-loadGoogleMaps(apiKey).then(() => {
-  const addressInput = document.getElementById('address');
-  initAutocomplete(addressInput, (place) => {
-    console.log('Selected place:', place);
-  });
+
+// Handle form submission
+const form = document.getElementById('job-form');
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(form);
+  const linearFeet = parseFloat(formData.get('linearFeet'));
+  const height = parseFloat(formData.get('height'));
+  const permit = formData.get('permit') === 'on';
+
+  const result = calculateMasonry(linearFeet, height, permit);
+  renderPreview(result);
+  //save to local storage
+  localStorage.setItem('masonryEstimate', JSON.stringify(result));
 });
-//renderPreview(payload);
-//alert('Saved!');
 
-//printBtn.addEventListener('click', () => window.print());
+// Handle print button click
+const printBtn = document.getElementById('print');
+printBtn.addEventListener('click', () => window.print());
 
 //Header and footer loading
 document.addEventListener('DOMContentLoaded', async () => {
-  await loadHeaderFooter();                 // injects header/footer
+  await loadHeaderFooter();                 
   document.dispatchEvent(new Event('partials:loaded'));
   console.log('Header and footer loaded');
 });

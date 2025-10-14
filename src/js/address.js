@@ -1,21 +1,34 @@
-export function loadGoogleMaps(apiKey) {
-  return new Promise((resolve, reject) => {
-    if (window.google?.maps) return resolve(window.google); // already loaded
-    const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
-    script.async = true;
-    script.defer = true;
-    script.onload = () => resolve(window.google);
-    script.onerror = reject;
-    document.head.appendChild(script);
+const {AddressValidation} = await google.maps.importLibrary('addressValidation');
+// Service endpoint to load Google Maps API and initialize autocomplete
+//https://addressvalidation.googleapis.com
+//POST /v1:validateAddress
+//Validates an address.
+//POST https://addressvalidation.googleapis.com/v1:validateAddress
+
+
+// Wait for the gmpx-place-picker custom element to be defined
+await customElements.whenDefined('gmpx-place-picker');
+
+  const placePicker = document.getElementById("place-picker");
+  const placeNameSpan = document.getElementById("place-name");
+  const placeAddressSpan = document.getElementById("place-address");
+
+  // Listen for the 'gmpx-placechange' event when a place is selected
+  placePicker.addEventListener('gmpx-placechange', () => {
+    const place = placePicker.value; // The selected place object
+
+    if (place && place.location) {
+      // Display the place details
+      placeNameSpan.textContent = place.displayName;
+      placeAddressSpan.textContent = place.formattedAddress;
+    } else {
+      // Clear display if no valid place is selected
+      placeNameSpan.textContent = "No details available";
+      placeAddressSpan.textContent = "";
+    }
   });
 }
 
-export function createAutocomplete(inputEl, onPlace) {
-  const ac = new google.maps.places.Autocomplete(inputEl, {
-    fields: ['place_id','formatted_address','address_components','geometry'],
-    types: ['address']
-  });
-  ac.addListener('place_changed', () => onPlace(ac.getPlace()));
-  return ac; // keep ref if you want to setBounds later
-}
+
+// Initialize the autocomplete form once the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', initAutocompleteForm);
