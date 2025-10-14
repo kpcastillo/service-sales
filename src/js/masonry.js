@@ -14,7 +14,7 @@ form.addEventListener("submit", (event) => {
   const permit = formData.get("permit") === "on";
 
   const result = calculateMasonry(linearFeet, height, permit);
-  renderPreview(result);
+  //renderPreview(result);
   //save to local storage
   localStorage.setItem("masonryEstimate", JSON.stringify(result));
 });
@@ -34,22 +34,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 const emailInput = document.getElementById("email-input");
 const emailFeedback = document.getElementById("email-feedback");
 
-emailInput.addEventListener("blur", async () => {
-  if (!emailInput.value) {
-    emailFeedback.textContent = "";
-    return;
-  }
-  try {
-    const data = await validateEmail();
-    if (data.format_valid) {
-      emailFeedback.textContent = "Valid email address.";
-      emailFeedback.style.color = "green";
-    } else {
-      emailFeedback.textContent = "Invalid email address.";
-      emailFeedback.style.color = "red";
+document.getElementById("email-input").addEventListener("click", async (e) => {
+    e.preventDefault();
+    const email = await emailInput.value.trim();
+    if (!email) return (emailFeedback.textContent = 'Please enter an email.');
+    try {
+        const data = await validateEmail();
+        if (data.format_valid) {
+            emailFeedback.textContent = "Valid email address.";
+            emailFeedback.style.color = "green";
+        } else {
+            emailFeedback.textContent = "Invalid email address.";
+            emailFeedback.style.color = "red";
+        }
+    } catch (error) {
+        console.error("Error validating email:", error);
     }
-
-  } catch (error) {
-    console.error("Error validating email:", error);
-  }
+    console.log(email);
 });
