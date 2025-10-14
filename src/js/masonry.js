@@ -34,12 +34,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 const emailInput = document.getElementById("email-input");
 const emailFeedback = document.getElementById("email-feedback");
 
-document.getElementById("email-input").addEventListener("click", async (e) => {
-    e.preventDefault();
-    const email = await emailInput.value.trim();
+
+emailInput.addEventListener("input", async (e) => {
+    const email = emailInput.value.trim();
     if (!email) return (emailFeedback.textContent = 'Please enter an email.');
     try {
-        const data = await validateEmail();
+        const data = await validateEmail(email);
         if (data.format_valid) {
             emailFeedback.textContent = "Valid email address.";
             emailFeedback.style.color = "green";
@@ -51,4 +51,5 @@ document.getElementById("email-input").addEventListener("click", async (e) => {
         console.error("Error validating email:", error);
     }
     console.log(email);
+
 });
