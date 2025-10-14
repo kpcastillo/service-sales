@@ -1,30 +1,55 @@
-import {loadHeaderFooter} from './utils.js';
-import {calculateMasonry} from './calculations.js';
+import {loadHeaderFooter} from "./utils.js";
+import {calculateMasonry} from "./calculations.js";
+import { validateEmail } from "./email.js"; 
 
 
 // Handle form submission
-const form = document.getElementById('job-form');
-form.addEventListener('submit', (event) => {
+const form = document.getElementById("job-form");
+form.addEventListener("submit", (event) => {
   event.preventDefault();
 
   const formData = new FormData(form);
-  const linearFeet = parseFloat(formData.get('linearFeet'));
-  const height = parseFloat(formData.get('height'));
-  const permit = formData.get('permit') === 'on';
+  const linearFeet = parseFloat(formData.get("linearFeet"));
+  const height = parseFloat(formData.get("height"));
+  const permit = formData.get("permit") === "on";
 
   const result = calculateMasonry(linearFeet, height, permit);
   renderPreview(result);
   //save to local storage
-  localStorage.setItem('masonryEstimate', JSON.stringify(result));
+  localStorage.setItem("masonryEstimate", JSON.stringify(result));
 });
 
 // Handle print button click
-const printBtn = document.getElementById('print');
-printBtn.addEventListener('click', () => window.print());
+const printBtn = document.getElementById("print");
+printBtn.addEventListener("click", () => window.print());
 
 //Header and footer loading
-document.addEventListener('DOMContentLoaded', async () => {
-  await loadHeaderFooter();                 
-  document.dispatchEvent(new Event('partials:loaded'));
-  console.log('Header and footer loaded');
+document.addEventListener("DOMContentLoaded", async () => {
+  await loadHeaderFooter();
+  document.dispatchEvent(new Event("partials:loaded"));
+  console.log("Header and footer loaded");
+});
+
+//email validation
+const emailInput = document.getElementById("email-input");
+const emailFeedback = document.getElementById("email-feedback");
+
+emailInput.addEventListener("blur", async () => {
+  if (!emailInput.value) {
+    emailFeedback.textContent = "";
+    return;
+  }
+  try {
+    const data = await validateEmail(emailInput.value.trim());
+    if (data.format_valid) {
+      emailFeedback.textContent = "Valid email address.";
+      emailFeedback.style.color = "green";
+    } else {
+      emailFeedback.textContent = "Invalid email address.";
+      emailFeedback.style.color = "red";
+    }
+
+  } catch (error) {
+    console.error("Error validating email:", error);
+  }
 });
