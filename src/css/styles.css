@@ -326,6 +326,21 @@ label {
   font-weight: 500;
 
 }
+.print button {
+        background-color: #967D74;
+        color: white;
+        border: none;
+        margin-bottom: 5px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 1em;
+        cursor: pointer;
+        &:hover{
+            background-color: #f3eee1;
+            color: #082136;
+            border: 1px solid #082136;
+        }
+}
 
 footer {
     background-color: #f8f8f8;

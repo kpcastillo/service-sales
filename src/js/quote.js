@@ -1,23 +1,37 @@
 // Quote page JavaScript
 
+const STORAGE_KEY = "masonryEstimate";
+
 // Load from local storage on page load
 document.addEventListener("DOMContentLoaded", () => {
   const savedEstimate = localStorage.getItem(STORAGE_KEY);
+  const display = document.getElementById("quoteDisplay");
   //check if data exists
-  if (savedEstimate) {
-    //Parse the JSON string back into a JavaScript object
-    //const { fullName, phone, email, notes, address, calcResults } = JSON.parse(savedEstimate);
+  if (!savedEstimate) {
+    display.innerHTML = "<p>No estimate data found. Please submit the form first.</p>";
+    return;
+  }
+  let data;
+  try {
+    data = JSON.parse(savedEstimate);
+  } catch (e) {
+    display.innerHTML = "<p>Error parsing estimate data. Please resubmit the form.</p>";
+    return;
+  }
+  if (data) {
     console.log("Loaded estimate from local storage");
-    const display=document.getElementById("quoteDisplay");
-    const formData = JSON.parse(savedEstimate);
-    //for (const key in formData) {
-      //  if (formData.hasOwnProperty(key)) {
-        //    display.innerHTML += `<p><strong>${key}:</strong> ${formData[key]}</p>`;
-       // }
-    display.innerHTML=formData;
+    //displayResults(fullName, phone, email, notes, address, calcResults);
+   // const formData = JSON.parse(savedEstimate);
+    for (const key in data) {
+      if (data.hasOwnProperty(key)) {
+        display.innerHTML += `<p><strong>${key}:</strong> ${data[key]}</p>`;
+      }
+    }
+
   }
 });
-    
+
+
 // Handle print button click
 const printBtn = document.getElementById("print");
 printBtn.addEventListener("click", () => window.print());
