@@ -12,6 +12,7 @@ export default defineConfig({
         masonry: resolve(__dirname, 'pages/masonry.html'),
         pavers: resolve(__dirname, 'pages/pavers.html'),
         concrete: resolve(__dirname, 'pages/concrete.html'),
+        quote: resolve(__dirname, 'pages/quote.html'),
       },
     },
   },
