@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <title>Service Sales</title>
+    <title>Masonry Calculator - Service Sales</title>
     <link rel="stylesheet" href="/src/css/styles.css">
     <script src="/src/js/masonry.js" type="module"></script>
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/@googlemaps/extended-component-library/0.6.11/index.min.js"></script>
@@ -13,18 +13,18 @@
     <main class="container">
       <h1>Service Sales</h1>
       <h2>Masonry Calculator</h2>
-      <p>Use this form to estimate the amount of materials needed for a masonry job and to calculate costs.</p>
+      <p>Use this form to estimate the amount of materials needed for a masonry job, calculate costs and generate a printable summary.</p>
 
-      <form id="job-form">
+      <form id="masonry-form">
         <fieldset>
           <legend>Customer</legend>
           <label>
             Full Name
-            <input name="name" required />
+            <input type="text" name="fullName" id="fullName" required />
           </label>
           <label>
             Phone
-            <input name="phone" type="tel" required />
+            <input name="phone" type="tel" id="phone" />
           </label>
           <label>
             Email
@@ -54,27 +54,27 @@
           <legend>Measurements</legend>
           <label>
             Linear Ft
-            <input name="linearFeet" type="number" min="0" step="0.5" required />
+            <input name="linearFeet" type="number" min="0" step="1"  id="linearFeet" />
           </label>
           <label>
             Height (ft)
-            <input name="height" type="number" min="0" step="0.5" required />
+            <input name="height" type="number" min="0" step="0.5" id="height" required />
           </label>
           <label>
             Permit Needed
-            <input name="permit" type="checkbox" />
+            <input name="permit" type="checkbox" id="permit" />
           </label>
         </fieldset>
         <fieldset>
           <label>
             Additional Information
-            <textarea name="notes"></textarea>
+            <textarea name="notes" placeholder="Notes / scope details" id="notes"></textarea>
           </label>
         </fieldset>
 
-        <div class="actions">
-          <button type="submit">Save</button>
-          <button type="button" id="print">Print</button>
+        <div class="action">
+          <button type="submitForm" id="submitForm">Submit</button>
+          <!--<button type="button" id="print"></button>-->
         </div>
       </form>
 

@@ -59,3 +59,12 @@ export async function openNav() {
 export async function closeNav() {
     document.getElementById("navbar").style.width = "0%";
 }
+
+//Local storage
+export function saveJSON(key, value) {
+  localStorage.setItem(key, JSON.stringify(value));
+}
+export function loadJSON(key) {
+  try { return JSON.parse(localStorage.getItem(key)) || null; }
+  catch { return null; }
+}

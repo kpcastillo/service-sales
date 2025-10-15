@@ -3,26 +3,6 @@ import {calculateMasonry} from "./calculations.js";
 import { validateEmail } from "./email.js"; 
 
 
-// Handle form submission
-const form = document.getElementById("job-form");
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  const formData = new FormData(form);
-  const linearFeet = parseFloat(formData.get("linearFeet"));
-  const height = parseFloat(formData.get("height"));
-  const permit = formData.get("permit") === "on";
-
-  const result = calculateMasonry(linearFeet, height, permit);
-  //renderPreview(result);
-  //save to local storage
-  localStorage.setItem("masonryEstimate", JSON.stringify(result));
-});
-
-// Handle print button click
-const printBtn = document.getElementById("print");
-printBtn.addEventListener("click", () => window.print());
-
 //Header and footer loading
 document.addEventListener("DOMContentLoaded", async () => {
   await loadHeaderFooter();
@@ -52,4 +32,72 @@ emailInput.addEventListener("input", async (e) => {
     }
     console.log(email);
 
+});
+
+//estimate rendering function
+function renderPreview(fname, phone, email, notes, address, result) {
+  const preview = document.getElementById('preview');
+  preview.innerHTML = `
+    <h2>Estimate Preview</h2>
+    <p>Customer: ${fname || 'N/A'}</p>
+    <p>Phone: ${phone || 'N/A'}</p>
+    <p>Email: ${email || 'N/A'}</p>
+    <p>Notes: ${notes || 'N/A'}</p>
+    <h3>Address</h3>
+    <p>${address || 'N/A'}</p>
+    <h3>Job Details</h3>
+    <p>Linear Feet: ${result.linearFeet}</p>
+    <p>Height: ${result.height}</p>
+    <p>Area: ${result.area.toFixed(2)} sq ft</p>
+    <p>Total Bricks: ${result.totalBricks}</p>
+    <p>Brick Cost: $${result.totalBrickCost.toFixed(2)}</p>
+    <p>Labor Cost: $${result.totalLaborCost.toFixed(2)}</p>
+    <p>Permit Cost: $${result.permitCost.toFixed(2)}</p>
+    <h3>Total Cost: $${result.totalCost.toFixed(2)}</h3>
+    <p>Date: ${new Date().toLocaleDateString()}</p>
+    <p>Notes: ${result.notes || 'N/A'}</p>
+    <p>(This is a preview only. Final estimates will be provided in a formal document.)</p>
+    <p>Please contact us to finalize your estimate and schedule the job.</p>
+  `;
+}
+
+const STORAGE_KEY = "masonryEstimate";
+
+// Handle form submission
+const form = document.getElementById("masonry-form");
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  console.log("Form submitted");
+
+// Extract form data
+const fullName = new FormData("fullName");
+const email = new FormData("email");
+const phone = new FormData("phone");
+const notes = new FormData("notes");
+const address = new FormData("address");
+const linearFeet = parseFloat(new FormData("linearFeet"));
+const height = parseFloat(new FormData("height"));
+const permit = new FormData("permit") === "on";
+
+const calcResults = calculateMasonry(linearFeet, height, permit);
+
+const previewResults = renderPreview(fullName, phone, email, notes, address, calcResults);
+
+// Show the estimate section
+document.getElementById("estimateSection").style.display = "block";
+
+// Save to local storage
+localStorage.setItem(STORAGE_KEY, JSON.stringify(previewResults));
+console.log("Estimate saved to local storage");
+});
+
+// Load from local storage on page load
+document.addEventListener("DOMContentLoaded", () => {
+  const savedEstimate = localStorage.getItem(STORAGE_KEY);
+  if (savedEstimate) {
+    const { fullName, phone, email, notes, address, calcResults } = JSON.parse(savedEstimate);
+    renderPreview(fullName, phone, email, notes, address, calcResults);
+    document.getElementById("estimateSection").style.display = "block";
+    console.log("Loaded estimate from local storage");
+  }
 });
