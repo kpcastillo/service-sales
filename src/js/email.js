@@ -1,8 +1,5 @@
 //Email validation API module
 const emailKey = import.meta.env.VITE_MAILBOX_API_KEY;
-//const emailAddressInput = document.getElementById('email-input');
-
-//const res = await fetch(url);
 
 // Function to validate email address using MailboxLayer API
 export async function validateEmail(email) {
@@ -16,4 +13,3 @@ export async function validateEmail(email) {
   const data = await response.json();
   return data;
 }
-//console.log(await validateEmail(emailAddressInput.value));

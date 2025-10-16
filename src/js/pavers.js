@@ -1,6 +1,7 @@
 import {loadHeaderFooter} from './utils.js';
 import { calculatePavers } from './calculations.js';
 import { validateEmail } from "./email.js";
+import { validatePhone } from "./phone.js";
 
 //Header and footer loading
 document.addEventListener("DOMContentLoaded", async () => {
@@ -30,6 +31,29 @@ emailInput.addEventListener("input", async (e) => {
         console.error("Error validating email:", error);
     }
     console.log(email);
+
+});
+
+//phone validation
+const phoneInput = document.getElementById("phone-input");
+const phoneFeedback = document.getElementById("phone-feedback");
+
+phoneInput.addEventListener("input", async (e) => {
+    const phone = phoneInput.value.trim();
+    if (!phone) return (phoneFeedback.textContent = 'Please enter a phone number.');
+    try {
+        const data = await validatePhone(phone);
+        if (data.valid) {
+            phoneFeedback.textContent = "Valid phone number.";
+            phoneFeedback.style.color = "green";
+        } else {
+            phoneFeedback.textContent = "Invalid phone number.";
+            phoneFeedback.style.color = "red";
+        }
+    } catch (error) {
+        console.error("Error validating phone:", error);
+    }
+    console.log(phone);
 
 });
 
@@ -75,7 +99,7 @@ form.addEventListener("submit", (e) => {
   // Read individual fields from FormData
   const fullName = (formData.get("fullName") || "").toString().trim();
   const email = (formData.get("email") || "").toString().trim();
-  const phone = (formData.get("phone") || "").toString().trim();
+  const phone = (formData.get("phone-input") || "").toString().trim();
   const notes = (formData.get("notes") || "").toString().trim();
   const address = (formData.get("address") || "").toString().trim();
 
