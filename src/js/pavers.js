@@ -85,14 +85,15 @@ function syncAddress() {
   placePicker?.addEventListener(evt, syncAddress);
 });
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  syncAddress(); 
-});
+//form.addEventListener("submit", (e) => {
+  //e.preventDefault();
+  //syncAddress(); 
+//});
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   console.log("Form submitted");
+  syncAddress();
   //Build form data from the form element
   const formData = new FormData(form);
 
