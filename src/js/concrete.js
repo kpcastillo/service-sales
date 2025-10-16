@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 //email validation
-//email validation
 const emailInput = document.getElementById("email-input");
 const emailFeedback = document.getElementById("email-feedback");
 
@@ -40,7 +39,7 @@ const STORAGE_KEY = "estimate";
 // Handle form submission
 const form = document.getElementById("job-form");
 const placePicker = document.getElementById("place-picker");
-const addressInput = document.getElementById("address");        // hidden input
+const addressInput = document.getElementById("address");   
 const addressDisplay = document.getElementById("address-display");
 
 function pullFormattedAddress(p) {
@@ -86,7 +85,7 @@ form.addEventListener("submit", (e) => {
   const height = parseFloat(formData.get("height")) || 0;
   const permit = (formData.get("permit") === "on");
 
-  const calcResults = calculatePavers(width, height, permit);
+  const calcResults = calculateConcrete(width, height, permit);
 
   // Save to local storage
   localStorage.setItem(
