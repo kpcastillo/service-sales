@@ -8,14 +8,25 @@
 </head>
 <body>
     <header>
-        <img id="logo" src="/public/images/logo-sales.png" alt="Service Sales Logo" />
+        <a href="/index.html"><img id="logo" src="/public/images/logo-sales.png" alt="Service Sales Logo" /></a>
     </header>
     <main>
         <h1>Quote Summary</h1>
-        <div id="quoteDisplay">
-            <!-- Estimate preview will be rendered here -->
-        </div>
-        <button id="print">Print Quote</button>
+        <section
+            id="estimateSection"
+            style="display: none; border: 1px solid #ccc; padding: 10px; margin-bottom: 20px;"
+        >
+            <p><strong>Customer:</strong> <span id="q-name"></span></p>
+            <p><strong>Phone:</strong> <span id="q-phone"></span></p>
+            <p><strong>Email:</strong> <span id="q-email"></span></p>
+            <p><strong>Service Address:</strong> <span id="q-address"></span></p>
+            <p><strong>Notes:</strong> <span id="q-notes"></span></p>
+            <hr />
+            <div id="quoteDisplay">
+                <!-- Estimate preview will be rendered here -->
+            </div>
+            <button id="print">Print Quote</button>
+        </section>
     </main>
     <footer></footer>
     <script src="/src/js/quote.js" type="module"></script>

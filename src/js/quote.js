@@ -20,8 +20,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   if (data) {
     console.log("Loaded estimate from local storage");
-    //displayResults(fullName, phone, email, notes, address, calcResults);
-   // const formData = JSON.parse(savedEstimate);
+  
+    document.getElementById("q-name").textContent = data.fullName || "";
+    document.getElementById("q-phone").textContent = data.phone || "";
+    document.getElementById("q-email").textContent = data.email || "";
+    document.getElementById("q-address").textContent = data.address || "";
+    document.getElementById("q-notes").textContent = data.notes || "";
+
+
     for (const key in data) {
       if (data.hasOwnProperty(key)) {
         display.innerHTML += `<p><strong>${key}:</strong> ${data[key]}</p>`;
@@ -36,9 +42,3 @@ document.addEventListener("DOMContentLoaded", () => {
 const printBtn = document.getElementById("print");
 printBtn.addEventListener("click", () => window.print());
 
-//get email for follow up
-//const email = document.getElementById("email").value;
-//if (email) {
-  //  console.log(`Follow-up email will be sent to: ${email}`);
-//} else {
-  //  console.log("No email provided for follow-up.");

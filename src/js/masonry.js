@@ -34,36 +34,39 @@ emailInput.addEventListener("input", async (e) => {
 
 });
 
-//estimate rendering function
-//function renderPreview(fname, phone, email, notes, address, result) {
-  //const preview = document.getElementById('quoteDisplay');
-  //preview.innerHTML = `
-    //<h2>Estimate Preview</h2>
-    //<p>Customer: ${fname || 'N/A'}</p>
-    //<p>Phone: ${phone || 'N/A'}</p>
-    //<p>Email: ${email || 'N/A'}</p>
-    //<p>Notes: ${notes || 'N/A'}</p>
-    //<h3>Address</h3>
-    //<p>${address || 'N/A'}</p>
-    
-    //<h3>Calculation Results</h3>
-
-    //<p>Total Bricks: ${result.totalBricks}</p>
-    //<p>Brick Cost: $${result.totalBrickCost.toFixed(2)}</p>
-    //<p>Labor Cost: $${result.totalLaborCost.toFixed(2)}</p>
-    //<p>Permit Cost: $${result.permitCost.toFixed(2)}</p>
-    //<h3>Total Cost: $${result.totalCost.toFixed(2)}</h3>
-    //<p>Date: ${new Date().toLocaleDateString()}</p>
-    //<p>Notes: ${result.notes || 'N/A'}</p>
-    //<p>(This is a preview only. Final estimates will be provided in a formal document.)</p>
-    //<p>Please contact us to finalize your estimate and schedule the job.</p>
-  //`;
-//}
-
 const STORAGE_KEY = "masonryEstimate";
 
 // Handle form submission
-const form = document.getElementById("masonry-form")
+const form = document.getElementById("masonry-form");
+const placePicker = document.getElementById("place-picker");
+const addressInput = document.getElementById("address");        // hidden input
+const addressDisplay = document.getElementById("address-display");
+
+function pullFormattedAddress(p) {
+  if (!p) return "";
+  return (
+    p.formattedAddress || p.formatted_address ||
+    p.displayName || p.name || p.address || ""
+  );
+}
+
+function syncAddress() {
+  const place = placePicker?.value;
+  const formatted = pullFormattedAddress(place);
+  addressInput.value = formatted;             // ✅ ensures FormData has "address"
+  if (addressDisplay) addressDisplay.textContent = formatted;
+}
+
+// keep the hidden input in sync with the picker
+["gmpx-placechange", "placechange", "change", "input"].forEach(evt => {
+  placePicker?.addEventListener(evt, syncAddress);
+});
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  syncAddress(); // ✅ final sync just before reading the form
+});
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   console.log("Form submitted");
@@ -72,10 +75,6 @@ form.addEventListener("submit", (e) => {
 
   // Read individual fields from FormData
   const fullName = (formData.get("fullName") || "").toString().trim();
-
-  console.log(fullName);
-  console.log(typeof fullName);
-  console.log(document.getElementById("fullName").value);
   const email = (formData.get("email") || "").toString().trim();
   const phone = (formData.get("phone") || "").toString().trim();
   const notes = (formData.get("notes") || "").toString().trim();
@@ -88,20 +87,15 @@ form.addEventListener("submit", (e) => {
 
   const calcResults = calculateMasonry(linearFt, height, permit);
 
-  //const previewResults = renderPreview(fullName, phone, email, notes, address, calcResults);
-
-  // Show the estimate section
-  //document.getElementById("quotedDisplay").style.display = "block";
-
   // Save to local storage
   localStorage.setItem(
     STORAGE_KEY, JSON.stringify({fullName, phone, email, notes, address, calcResults})
   );
   console.log("Estimate saved to local storage");
-  });
+  
 
   // Navigate to the quote page to display the estimate
   const nextUrl = new URL("./quote.html", window.location.href);
   window.location.assign(nextUrl); // or window.open(nextUrl, "_blank");
-
+});
 

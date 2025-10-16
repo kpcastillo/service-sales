@@ -36,7 +36,8 @@
         <fieldset>
           <legend>Service Address</legend>
           <!-- Element to display the selected address -->
-          <div id="address-display"></div>
+          <input type="hidden" id="address" name="address" />
+          <div id="address-display" class="muted"></div>
             <!-- Loads the Google Maps Platform API and the Extended Component Library -->
           <gmpx-api-loader
             key="YOUR_API_KEY" 
@@ -44,10 +45,7 @@
           </gmpx-api-loader>
           <!-- The Place Picker component for autocomplete functionality -->
           <gmpx-place-picker id="place-picker"></gmpx-place-picker>
-          <!--
-          <input id="address" placeholder="Start typing address…" autocomplete="off" /> 
-          <input type="hidden" id="placeId" />
-          <div id="addressParts" class="muted"></div> -->
+          
         </fieldset>
 
         <fieldset>
