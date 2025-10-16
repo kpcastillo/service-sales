@@ -3,9 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <title>Service Sales</title>
+    <title>Concrete Calculator - Service Sales</title>
     <link rel="stylesheet" href="/src/css/styles.css">
     <script src="/src/js/concrete.js" type="module"></script>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/@googlemaps/extended-component-library/0.6.11/index.min.js"></script>
   </head>
   <body>
     <header id="mainHeader"></header>
@@ -19,23 +20,29 @@
           <legend>Customer</legend>
           <label>
             Full Name
-            <input name="name" required />
+            <input type="text" name="fullName" id="fullName" required />
           </label>
           <label>
             Phone
-            <input name="phone" type="tel" required />
+            <input name="phone" type="tel" id="phone" />
           </label>
           <label>
             Email
-            <input name="email" type="email" required />
+            <input id="email-input" name="email" type="email" required />
+            <span id="email-feedback" class="muted"></span>
           </label>
         </fieldset>
-
         <fieldset>
           <legend>Service Address</legend>
-          <input id="address" placeholder="Start typing address…" autocomplete="off" />
-          <input type="hidden" id="placeId" />
-          <div id="addressParts" class="muted"></div>
+          <input type="hidden" id="address" name="address" />
+          <div id="address-display" class="muted"></div>
+            <!-- Loads the Google Maps Platform API and the Extended Component Library -->
+          <gmpx-api-loader
+            key="YOUR_API_KEY" 
+            solution-channel="GMP_CCS_autocomplete_v5">
+          </gmpx-api-loader>
+          <!-- The Place Picker component for autocomplete functionality -->
+          <gmpx-place-picker id="place-picker"></gmpx-place-picker>
         </fieldset>
 
         <fieldset>
@@ -49,14 +56,20 @@
             <input name="width" type="number" min="0" step="0.5" required />
           </label>
           <label>
-            Notes
-            <textarea name="notes"></textarea>
+            Permit Needed
+            <input id="permit" name="permit" type="checkbox" />
           </label>
         </fieldset>
 
-        <div class="actions">
-          <button type="submit">Save</button>
-          <button type="button" id="print">Print</button>
+        <fieldset>
+          <label>
+            Additional Information
+            <textarea id="notes" name="notes" placeholder="Notes / scope details"></textarea>
+          </label>
+        </fieldset>
+
+        <div class="action">
+          <button type="submitForm" id="submitForm">Submit</button>
         </div>
       </form>
 

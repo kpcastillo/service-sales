@@ -13,18 +13,19 @@
     <main>
         <h1>Quote Summary</h1>
         <section
-            id="estimateSection"
-            style="display: none; border: 1px solid #ccc; padding: 10px; margin-bottom: 20px;"
-        >
+            id="estimateSection">
             <p><strong>Customer:</strong> <span id="q-name"></span></p>
             <p><strong>Phone:</strong> <span id="q-phone"></span></p>
             <p><strong>Email:</strong> <span id="q-email"></span></p>
             <p><strong>Service Address:</strong> <span id="q-address"></span></p>
             <p><strong>Notes:</strong> <span id="q-notes"></span></p>
+            <p><strong>Area:</strong> <span id="q-area"></span> ft²</p>
+            <p><strong>Permit Required:</strong> <span id="q-permitCost"></span></p>  
+            <p><strong>Material Cost:</strong> $<span id="q-materialCost"></span></p>
+            <p><strong>Labor Cost:</strong> $<span id="q-laborCost"></span></p>
+            <p><strong>Total:</strong> $<span id="q-totalCost"></span></p>
             <hr />
-            <div id="quoteDisplay">
-                <!-- Estimate preview will be rendered here -->
-            </div>
+        </section>
             <button id="print">Print Quote</button>
         </section>
     </main>

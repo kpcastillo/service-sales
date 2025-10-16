@@ -34,7 +34,7 @@ emailInput.addEventListener("input", async (e) => {
 
 });
 
-const STORAGE_KEY = "masonryEstimate";
+const STORAGE_KEY = "estimate";
 
 // Handle form submission
 const form = document.getElementById("masonry-form");
@@ -53,7 +53,7 @@ function pullFormattedAddress(p) {
 function syncAddress() {
   const place = placePicker?.value;
   const formatted = pullFormattedAddress(place);
-  addressInput.value = formatted;             // ✅ ensures FormData has "address"
+  addressInput.value = formatted;             //Ensures FormData has "address"
   if (addressDisplay) addressDisplay.textContent = formatted;
 }
 
@@ -64,7 +64,7 @@ function syncAddress() {
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  syncAddress(); // ✅ final sync just before reading the form
+  syncAddress(); 
 });
 
 form.addEventListener("submit", (e) => {
@@ -89,7 +89,7 @@ form.addEventListener("submit", (e) => {
 
   // Save to local storage
   localStorage.setItem(
-    STORAGE_KEY, JSON.stringify({fullName, phone, email, notes, address, calcResults})
+    STORAGE_KEY, JSON.stringify({fullName, phone, email, notes, address, linearFt, height, permit, calcResults})
   );
   console.log("Estimate saved to local storage");
   

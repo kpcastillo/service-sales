@@ -1,6 +1,6 @@
 // Quote page JavaScript
 
-const STORAGE_KEY = "masonryEstimate";
+const STORAGE_KEY = "estimate";
 
 // Load from local storage on page load
 document.addEventListener("DOMContentLoaded", () => {
@@ -26,13 +26,15 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("q-email").textContent = data.email || "";
     document.getElementById("q-address").textContent = data.address || "";
     document.getElementById("q-notes").textContent = data.notes || "";
+    document.getElementById("q-area").textContent = data.calcResults?.area || "0";
+
+    document.getElementById("q-materialCost").textContent = data?.calcResults?.totalBrickCost?.toFixed(2) || "0.00";
+    document.getElementById("q-laborCost").textContent = data?.calcResults?.totalLaborCost?.toFixed(2) || "0.00";
+    document.getElementById("q-permitCost").textContent = data?.calcResults?.permitCost?.toFixed(2) || "0.00";
+    document.getElementById("q-totalCost").textContent = data?.calcResults?.totalCost?.toFixed(2) || "0.00";
+    console.log("data.calcResults:", data?.calcResults);
 
 
-    for (const key in data) {
-      if (data.hasOwnProperty(key)) {
-        display.innerHTML += `<p><strong>${key}:</strong> ${data[key]}</p>`;
-      }
-    }
 
   }
 });
