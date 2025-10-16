@@ -61,7 +61,7 @@ phoneInput.addEventListener("input", async (e) => {
 const STORAGE_KEY = "estimate";
 
 // Handle form submission
-const form = document.getElementById("job-form");
+const form = document.getElementById("concrete-form");
 const placePicker = document.getElementById("place-picker");
 const addressInput = document.getElementById("address");   
 const addressDisplay = document.getElementById("address-display");
@@ -106,14 +106,14 @@ form.addEventListener("submit", (e) => {
 
   //numbers and booleans
   const width = parseFloat(formData.get("width")) || 0;
-  const height = parseFloat(formData.get("height")) || 0;
+  const length = parseFloat(formData.get("length")) || 0;
   const permit = (formData.get("permit") === "on");
 
-  const calcResults = calculateConcrete(width, height, permit);
+  const calcResults = calculateConcrete(length, width, permit);
 
   // Save to local storage
   localStorage.setItem(
-    STORAGE_KEY, JSON.stringify({fullName, phone, email, notes, address, width, height, permit, calcResults})
+    STORAGE_KEY, JSON.stringify({fullName, phone, email, notes, address, width, length, permit, calcResults})
   );
   console.log("Estimate saved to local storage");
   
